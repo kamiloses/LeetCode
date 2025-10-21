@@ -1,26 +1,23 @@
-﻿public class Solution{
-public string LongestCommonPrefix(string[] strs) {
-    if (strs == null || strs.Length == 0) return "";
-
-    string currentPrefix = "";
-    int maxLength = strs.Min(s => s.Length); 
-
-    for (int i = 0; i < maxLength; i++) {
-        char currentChar = strs[0][i];
-        for (int j = 1; j < strs.Length; j++) {
-            if (strs[j][i] != currentChar) {
-                return currentPrefix; 
-            }
+﻿public class Solution
+{
+    public static int points(String[] games)
+    {
+        int result = 0;
+        foreach (var game in games)
+        {
+            int[] scores = game.Split(":").Select(x => int.Parse(x)).ToArray();
+            if (scores[0] > scores[1]) result += 3;
+            else if (scores[0] == scores[1]) result += 1;
+            else result += 0;
         }
-        currentPrefix += currentChar; 
+
+        return result;
     }
 
-    return currentPrefix;
-}
 
-public static void Main(string[] args)
-{
-    var solution = new Solution();
-   Console.WriteLine( solution.LongestCommonPrefix(new string[]{"flower","flow","flight"}));
-}
+    public static void Main(string[] args)
+    {
+        Object solution = new Solution();
+        Console.WriteLine(points(new string[] { "3:1", "2:2", "0:1" }));
+    }
 }
