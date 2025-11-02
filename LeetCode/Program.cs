@@ -52,65 +52,82 @@ public class Sorting
 
     public class Leetcode
     {
-        public bool IsPalindrome(string text)
+        public void ReverseArray(int[] array)//odwróc tablice bez tworzenia nowej
         {
-            var stringBuilder = new StringBuilder();
-            for (int i = text.Length - 1; i >= 0; i--)
+            int temp;
+            for (int i = 0; i < array.Length/2; i++)//WAZNE JEST TO /2
             {
-                stringBuilder.Append(text[i]);
-
+                temp=array[i];
+                array[i]= array[array.Length - 1 - i];
+                array[array.Length - 1 - i]=temp;
             }
 
-            return stringBuilder.ToString().Equals(text);
+          
+        }
+
+        public int FindMax(int[] array)
+        {
+            if(array==null ||array.Length==0) throw new Exception("Array is empty");
+            
+            int max = array[0];
+            for (var i = 1; i < array.Length; i++)
+            {
+                if (array[i] > max) max=array[i];
+       
+            }
+
+            return max;
+        }
+
+        public int FindMin(int[] array)
+        {
+            
+            if(array==null ||array.Length==0) throw new Exception("Array is empty");
+            
+            int min = array[0];
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (min>array[i]) min=array[i];
+            }
+
+            return min;
+        }
+
+        public int SumArray(int[] array)
+        {
+            if(array==null ||array.Length==0) throw new Exception("Array is empty");
+            
+            int sum = 0;
+            foreach (var i in array)
+            {
+                sum += i;
+            }
+
+            return sum;
+        }
+
+        public double averageArray(int[] array)
+        {
+            if(array==null ||array.Length==0) throw new Exception("Array is empty");
+            
+            int sum = 0;
+            foreach (var i in array)
+            {
+                sum += i;
+            }
+
+            return (double)sum/array.Length;
         }
 
 
 
-        public Dictionary<string, int> CountWordOccurrences(string text)
-        {
-            string[] arr = text.Split(" ");
-
-            var dictionary = new Dictionary<string, int>();
-
-            foreach (string word in arr)
-            {
-                if (!dictionary.ContainsKey(word))
-                {
-                    dictionary.Add(word, 1);
-                }
-                else
-                {
-                    dictionary[word]++;
-                }
-
-            }
-
-            return dictionary;
-        }
     }
 
 
-    public int GreatestCommonDivisor(int a, int b)
-    {
-        int min = Math.Min(a, b);
-        int gcd = 1;
 
-        for (int i = 1; i <= min; i++)
-        {
-            if (a % i == 0 && b % i == 0)
-            {
-                gcd = i;
-            }
-        }
-
-        return gcd;
-    }
-
-
-
-   public static void Main(string[] args)
+    public static void Main(string[] args)
    {
-       Leetcode leetcode = new Leetcode();
-       Console.Write(leetcode.CountWordOccurrences("ala ma kota i kot ma ale"));
+       var leetcode = new Leetcode();
+       leetcode.FindMin([1, 2, 3]);
    }
 }
