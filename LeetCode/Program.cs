@@ -137,6 +137,7 @@ public class Sorting
                         break;
                     }
                 }
+
                 if (!isDuplicate)
                 {
                     array[uniqueCount] = array[i];
@@ -186,6 +187,7 @@ public class Sorting
                 if (array[i] != array[array.Length - 1 - i])
                     return false;
             }
+
             return true;
         }
 
@@ -211,13 +213,178 @@ public class Sorting
             }
         }
 
-        //stringi
-        
-        
+        public string ReverseString(string str)
+        {
+            if (str == null)
+                throw new Exception("String is null");
+
+            char[] charArray = str.ToCharArray();
+            int n = charArray.Length;
+
+            for (int i = 0; i < n / 2; i++)
+            {
+                char temp = charArray[i];
+                charArray[i] = charArray[n - 1 - i];
+                charArray[n - 1 - i] = temp;
+            }
+
+            return new string(charArray);
+        }
+
+        public bool IsPalindrome(string str)
+        {
+            if (str == null)
+                throw new Exception("String is null");
+
+            string reversed = "";
+            for (int i = str.Length - 1; i >= 0; i--)
+            {
+                reversed += str[i];
+            }
+
+            return str == reversed;
+        }
+
+        public char FindMostFrequentChar(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                throw new Exception("String is null or empty");
+
+            var signs = new Dictionary<char, int>();
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (!signs.ContainsKey(str[i]))
+                {
+                    signs.Add(str[i], 1);
+                }
+                else
+                {
+                    signs[str[i]] += 1;
+                }
+
+            }
+
+            int max = 0;
+            char c = ' ';
+
+            foreach (var sign in signs)
+            {
+                if (sign.Value > max)
+                {
+                    max = sign.Value;
+                    c = sign.Key;
+                }
+            }
 
 
 
+            return c;
+        }
 
+        public string RemoveSpaces(string str)
+        {
+            if (str == null)
+                throw new Exception("String is null");
+
+            string result = "";
+
+            foreach (char c in str)
+            {
+                if (c != ' ')
+                    result += c;
+            }
+
+            return result;
+        }
+//"listen" i "silent" → anagramy
+        public bool AreAnagrams(string str1, string str2)
+        {
+            if (str1 == null || str2 == null)
+                throw new Exception("One or both strings are null");
+
+            if (str1.Length != str2.Length)
+                return false;
+
+            char[] arr1 = str1.ToCharArray();
+            char[] arr2 = str2.ToCharArray();
+
+            Array.Sort(arr1);
+            Array.Sort(arr2);
+
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                if (arr1[i] != arr2[i])
+                    return false;
+            }
+
+            return true; 
+        }
+
+        public void FindFirstUniqueWord(string str)//void celowo dałem
+        {
+            //czyli znowu hashmapa i poprostu sprawdzam ile tych samóch słow jest i np 1 element ma wysstepowania a ja szukam 1 elementu w hashmapie gdzie klucz ma tylko 1 wartosc
+        }
+
+
+        public void ReverseWords(string sentence)//public string ReverseWords(string sentence);
+        {
+            //czyli wystarczy split(" ") i wtedy odwrocona petla bo to nie bedzie literek odwracać tylko wyraz w innej kolejnosci czyli "ab" "bc" "cd" na "cd" "bc" "ab"
+            
+            
+        }
+        public string ReplaceChar(string str, char oldChar, char newChar)
+        {
+            if (str == null)
+                throw new Exception("String is null");
+
+            char[] result = new char[str.Length];
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] == oldChar)
+                    result[i] = newChar;
+                else
+                    result[i] = str[i];
+            }
+
+            return new string(result);
+        }
+
+        public bool IsEven(int number)
+        {
+            return number % 2 == 0;
+        }
+        public bool IsPrime(int number)
+        {
+            if (number <= 1)
+                return false; 
+
+            for (int i = 2; i <= number / 2; i++)
+            {
+                if (number % i == 0)
+                    return false; 
+            }
+
+            return true; 
+        }
+
+        public int GCD(int a, int b)//najwiekszy dzielnik
+        {
+            int min = Math.Min(a, b);
+            int gcd = 1;
+
+            for (int i = 1; i <= min; i++)
+            {
+                if (a % i == 0 && b % i == 0)
+                {
+                    gcd = i; 
+                }
+            }
+
+            return gcd;
+        }
+          //26
 
         public static void Main(string[] args)
         {
