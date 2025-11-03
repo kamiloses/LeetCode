@@ -386,11 +386,61 @@ public class Sorting
         }
           //26
 
+          
+          
+          
+          public static int SumOfDigits(int number)
+          {
+              number = Math.Abs(number); 
+              int sum = 0;
+
+              while (number > 0)
+              {
+                  sum += number % 10; 
+                  number /= 10;       
+              }
+
+              return sum;
+          }
+          
+          public static int ReverseNumber(int number)
+          {
+              int reversed = 0;
+
+              while (number != 0)
+              {
+                  reversed = reversed * 10 + number % 10;
+                  number /= 10;
+              }
+
+              return reversed;
+          }
+          public static bool IsPalindrome(int number)
+          {
+              int original = number;
+              int reversed = 0;
+
+              while (number != 0)
+              {
+                  reversed = reversed * 10 + number % 10;
+                  number /= 10;
+              }
+
+              return original == reversed;
+          }
+          
+          
+          
+          
         public static void Main(string[] args)
         {
             var leetcode = new Leetcode();
             int[] result =leetcode.RemoveDuplicates([1, 1, 2, 2, 3]);
             Console.WriteLine(string.Join(", ", result));
+            
+            
+            
+            
         }
     }
 }
